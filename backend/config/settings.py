@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env.str('PG_DATABASE', 'postgres'),
         'USER': env.str('PG_USER', 'postgres'),
         'PASSWORD': env.str('PG_PASSWORD', 'postgres'),
@@ -108,6 +108,9 @@ REST_FRAMEWORK = {
     #     'rest_framework_simplejwt.authentication.JWTAuthentication',
     #     'rest_framework.authentication.BasicAuthentication',
     # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
@@ -117,15 +120,6 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.str('PG_DATABASE'),
-        'USER': env.str('PG_USER'),
-        'PASSWORD': env.str('PG_PASSWORD'),
-        'HOST': env.str('DB_HOST', default='localhost'),
-        'PORT': env.str('DB_PORT', default='5432'),
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -142,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -175,8 +169,8 @@ CSRF_COOKIE_SECURE = False
 # DRF SPECTACULAR SETTINGS
 ###############################
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Flowers Shop',
-        'DESCRIPTION': 'Flowers Shop',
+    'TITLE': 'chat',
+        'DESCRIPTION': 'chat',
     'VERSION': '1.0.0',
     'OPENAPI_VERSION': '3.0.3',
 
@@ -207,12 +201,6 @@ SPECTACULAR_SETTINGS = {
     'DISABLE_ERRORS_AND_WARNINGS': True,
 }
 
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
