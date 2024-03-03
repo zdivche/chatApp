@@ -12,4 +12,5 @@ urlpatterns = [
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
 
      path('auth/', include('authh_custom.urls')),
+     path('api/', include('common.urls')),
 ]

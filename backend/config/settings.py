@@ -30,7 +30,9 @@ INSTALLED_APPS = [
 # apps
 
 INSTALLED_APPS += [
-    'api'
+    'api',
+    'authh_custom',
+    'common',
 ]
 
 # packages
@@ -40,7 +42,7 @@ INSTALLED_APPS += [
   'corsheaders',
   'djoser',
   'rest_framework_simplejwt',
-  'authh_custom',
+  
 ]
 
 INSTALLED_APPS += [
@@ -108,9 +110,9 @@ REST_FRAMEWORK = {
     #     'rest_framework_simplejwt.authentication.JWTAuthentication',
     #     'rest_framework.authentication.BasicAuthentication',
     # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
