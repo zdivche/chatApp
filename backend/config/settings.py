@@ -16,7 +16,7 @@ SECRET_KEY = 'SECRET_KEY'
 
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='').split(' ')
+ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='127.0.0.1').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,7 +32,6 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'api',
     'authh_custom',
-    'common',
 ]
 
 # packages
@@ -42,6 +41,7 @@ INSTALLED_APPS += [
   'corsheaders',
   'djoser',
   'rest_framework_simplejwt',
+  'channels_app',
   
 ]
 

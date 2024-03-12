@@ -1,23 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import NotFoundPage from './pages/NotFoundPage.tsx';
-import HeaderComponent from './components/HeaderComponent.tsx';
-import RegisterPage from './components/RegisterPage.tsx';
+import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar.tsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import IndexPage from './components/IndexPage.tsx';
+import RegisterPage from './components/RegisterPage.tsx';
+
+const Layout = () => {
+	return (
+		<>
+			<Navbar />
+			<Outlet />
+		</>
+	);
+};
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <HeaderComponent />,
-		errorElement: <NotFoundPage />,
-	},
-	{
-		path: '/register',
-		element: <RegisterPage />,
-		errorElement: <NotFoundPage />,
-	},
+		element: <Layout/>,
+		children: [
+			{ path: "/", element: <IndexPage /> },
+      { path: "about", element: <IndexPage /> },
+      { path: "contact", element: <IndexPage /> },
+			{ path: 'register', element: <RegisterPage /> },
+		]
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
