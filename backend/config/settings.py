@@ -1,9 +1,9 @@
-
 import os
 from datetime import timedelta
-
 import environ
 
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 root = environ.Path(__file__) - 2
 print(root)
 env = environ.Env()
@@ -31,6 +31,8 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'api',
+    'channels_app',
+
     'authh_custom',
 ]
 
@@ -41,8 +43,8 @@ INSTALLED_APPS += [
   'corsheaders',
   'djoser',
   'rest_framework_simplejwt',
-  'channels_app',
-  
+  'channels',
+
 ]
 
 INSTALLED_APPS += [
@@ -239,3 +241,17 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'z.divchenko@gmail.com'
 EMAIL_HOST_PASSWORD = 'iocg wovk ckcl dbzk'
 
+###############################
+# CHANNELS SETTINGS
+###############################
+
+ASGI_APPLICATION = 'config.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)], 
+        },
+    },
+}
